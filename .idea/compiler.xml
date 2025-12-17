@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="JobPortal_main" target="21" />
+      <module name="JobPortal_test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="JobPortal" options="-parameters" />
+      <module name="JobPortal.main" options="-parameters" />
+      <module name="JobPortal.test" options="-parameters" />
+      <module name="JobPortal_main" options="-parameters" />
+      <module name="JobPortal_test" options="-parameters" />
+    </option>
+  </component>
+  <component name="TypeScriptCompiler">
+    <option name="typeScriptCompilerParams" value="--project tsconfig.app.json" />
+  </component>
+</project>
