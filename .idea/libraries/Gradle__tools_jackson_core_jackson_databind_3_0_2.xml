@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: tools.jackson.core:jackson-databind:3.0.2" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="tools.jackson.core" artifactId="jackson-databind" version="3.0.2" baseVersion="3.0.2" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tools.jackson.core/jackson-databind/3.0.2/a72d3b8a1c36c166df13726b13d34877f6ea9b1c/jackson-databind-3.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

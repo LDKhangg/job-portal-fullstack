@@ -2,6 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="JobPortal" target="21" />
+      <module name="JobPortal.main" target="21" />
+      <module name="JobPortal.test" target="21" />
       <module name="JobPortal_main" target="21" />
       <module name="JobPortal_test" target="21" />
     </bytecodeTargetLevel>
