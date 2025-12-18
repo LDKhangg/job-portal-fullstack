@@ -1,0 +1,17 @@
+version : '3.8'
+
+services:
+  DB:
+   image: postgres:13.22-alpine3.22
+   container_name: JobPortalDB
+   restart: unless-stopped
+   environment:
+    POSTGRES_USER: ${DB_USERNAME}
+    POSTGRES_PASSWORD: ${DB_PASSWORD}
+    POSTGRES_DB: ${DB_NAME}
+   ports:
+     - "${DB_PORT}:5432"
+   volumes:
+     - JobPortalDB-data:/var/lib/postgres/data
+volumes:
+  JobPortalDB-data: {}
