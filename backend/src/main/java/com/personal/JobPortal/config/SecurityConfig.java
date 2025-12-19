@@ -40,13 +40,19 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+    public String[] public_endpoints = {
+            "/api/auth/**",
+            "/swagger-ui/**",
+            "/api-docs/**",
+            "/swagger-ui.html"
+    };
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(cors->cors.configurationSource(corsConfigurationSource()))
-                .authorizeHttpRequests(auth-> auth.requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/public/**").permitAll()
+                .authorizeHttpRequests(auth-> auth.requestMatchers(public_endpoints).permitAll()
                 .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
