@@ -18,6 +18,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -49,17 +52,19 @@ public class AuthService {
                         request.getPassword()
                 )
         );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        var user = userRepo.getUserByEmail(request.getEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("role", user.getRole().name());
+        extraClaims.put("userId", user.getId());
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        User user = userDetails.getUser();
-        String access_token = jwtService.generateAccessToken(userDetails);
-        String refresh_token = jwtService.generateAccessToken(userDetails);
-
+        var accessToken = jwtService.generateAccessToken(extraClaims, userDetails);
+        var refreshToken = jwtService.generateRefreshToken(userDetails);
         return AuthResponse.builder()
-                .access_token(access_token)
-                .refresh_token(refresh_token)
+                .access_token(accessToken)
+                .refresh_token(refreshToken)
                 .fullName(user.getFullName())
-                .avatar(user.getEmail())
+                .avatar(user.getAvatarUrl())
                 .role(user.getRole().toString())
                 .build();
     }
