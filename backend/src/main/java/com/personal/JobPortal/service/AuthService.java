@@ -52,10 +52,12 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         User user = userDetails.getUser();
-        String jwt = jwtService.generateToken(authentication);
+        String access_token = jwtService.generateAccessToken(userDetails);
+        String refresh_token = jwtService.generateAccessToken(userDetails);
+
         return AuthResponse.builder()
-                .access_token(jwt)
-                .refresh_token(null)
+                .access_token(access_token)
+                .refresh_token(refresh_token)
                 .fullName(user.getFullName())
                 .avatar(user.getEmail())
                 .role(user.getRole().toString())
